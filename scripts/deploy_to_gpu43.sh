@@ -36,18 +36,12 @@ echo "🔧 Setting up environment..."
 ssh $SERVER << EOF
     cd $REMOTE_DIR
 
-    # 创建conda环境 (如果不存在)
-    if ! conda env list | grep -q "eas"; then
-        echo "Creating conda environment 'eas'..."
-        conda create -n eas python=3.10 -y
-    fi
+    # 使用系统Python3 (Ubuntu 20.04自带Python 3.8)
+    echo "Python version: $(python3 --version)"
 
-    # 激活环境并安装依赖
-    source ~/anaconda3/etc/profile.d/conda.sh
-    conda activate eas
-
+    # 安装依赖 (使用--user避免权限问题)
     echo "Installing dependencies..."
-    pip install -r requirements.txt -q
+    pip3 install --user -r requirements.txt -q
 
     # 创建必要的目录
     mkdir -p results logs checkpoints data
