@@ -43,7 +43,7 @@ ast-decompiler==0.7.0
 tree-sitter==0.20.2
 
 # 效率分析 (Round 4 部署)
-thop==0.1.1
+thop==0.1.1.post2209072238  # 使用兼容版本
 
 # 测试
 pytest==7.4.0
