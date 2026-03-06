@@ -238,6 +238,13 @@ proxy_evaluator:
 - Code architecture design
 - Risk management strategies
 
+**Experiment Control Protocol**: `docs/EXPERIMENT_CONTROL_PROTOCOL.md`
+- Unified API calling (Aliyun Bailian)
+- Controlled variables (seeds, versions, hardware)
+- Software version lock (PyTorch 2.1.0, etc.)
+- Randomness control and reproducibility
+- Quality assurance checklists
+
 ## Project Evolution Insights
 
 ### What Worked in 1.0
