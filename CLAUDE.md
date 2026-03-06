@@ -232,6 +232,12 @@ proxy_evaluator:
 
 **Full Paper Plan**: `docs/EAS_PAPER_PLAN.md`
 
+**Detailed Implementation Plan**: `docs/EXPERIMENT_IMPLEMENTATION_PLAN.md`
+- Hardware/software requirements
+- Day-by-day task breakdown
+- Code architecture design
+- Risk management strategies
+
 ## Project Evolution Insights
 
 ### What Worked in 1.0
