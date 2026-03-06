@@ -32,8 +32,8 @@
 运行用户: s125mdg43_10
 
 LLM配置:
-  模型: kimi-k2.5
-  API: 阿里云百炼
+  模型: kimi-k2.5 (阿里云百炼兼容模式)
+  base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
   temperature: 0.7 (固定)
   max_retries: 3
 
@@ -56,6 +56,15 @@ API契约:
 - ✅ API密钥配置完成
 - ✅ 快速测试模式启动 (--quick, 10样本)
 - 🔄 实验运行中 (PID: 1724955)
+
+#### 2026-03-07 01:10 - 发现问题：Base URL 错误
+- ❌ 问题：使用 `dashscope.aliyuncs.com/api/v1` 无法访问 kimi-k2.5
+- ✅ 解决：更新为 `dashscope.aliyuncs.com/compatible-mode/v1`
+- ✅ 验证：kimi-k2.5 API 测试通过
+
+#### 2026-03-07 01:15 - 重新启动实验
+- 🔄 更新API配置 (compatible-mode/v1)
+- 🔄 准备重新启动 Round 1 实验
 
 ### 预期交付物
 

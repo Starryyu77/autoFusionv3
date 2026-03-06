@@ -243,11 +243,7 @@ class UnifiedLLMBackend:
 
         Example:
             >>> llm = UnifiedLLMBackend()
-            >>> prompt = """
-            ... Generate a PyTorch nn.Module for multimodal fusion.
-            ... Input: vision [B, 576, 1024], audio [B, 400, 512], text [B, 77, 768]
-            ... Output: [B, 10]
-            ... """
+            >>> prompt = "Generate a PyTorch nn.Module..."
             >>> resp = llm.generate(prompt)
             >>> print(resp.code)
         """
