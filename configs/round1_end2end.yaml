@@ -1,0 +1,82 @@
+# Round 1: 端到端可行性验证 (重新设计)
+# 目标: 验证生成的架构能编译、能训练、能推理
+
+experiment:
+  name: "round1_end2end_validation"
+  round: 1
+  description: "验证SelfHealingCompiler的端到端成功率(编译+训练+推理)"
+  output_dir: "results/round1"
+  log_dir: "logs/round1"
+  seed: 42
+
+# 内循环配置
+inner_loop:
+  max_retries: 3
+  enable_error_feedback: true
+  enable_shape_verification: true
+
+# 端到端验证配置
+end2end_validation:
+  # 阶段1: 语法编译
+  syntax_check: true
+
+  # 阶段2: 形状验证 (dummy forward)
+  shape_check: true
+
+  # 阶段3: 训练验证 (关键!)
+  training_check:
+    enabled: true
+    num_epochs: 3           # 训练3个epoch验证能否收敛
+    batch_size: 16
+    learning_rate: 0.001
+    min_improvement: 0.01   # 损失必须下降至少1%
+
+  # 阶段4: 推理验证
+  inference_check:
+    enabled: true
+    num_samples: 10         # 验证10个样本推理
+
+# 数据集配置 (使用MOSEI真实数据)
+dataset:
+  name: "CMU-MOSEI"
+  type: "processed_features"  # 使用预提取的CLIP/wav2vec/BERT特征
+  path: "/usr1/home/s125mdg43_10/data/mosei_processed"
+  split: "train"
+  max_samples: 200            # 只用200个样本快速验证
+  num_classes: 10             # 情感分析10分类
+
+  # 特征维度 (来自基座模型)
+  feature_dims:
+    vision: 1024    # CLIP-ViT-L/14
+    audio: 1024     # wav2vec 2.0 Large
+    text: 768       # BERT-Base
+
+# API契约
+api_contract:
+  inputs:
+    vision: {'shape': [2, 576, 1024], 'dtype': 'float32'}
+    audio: {'shape': [2, 400, 512], 'dtype': 'float32'}
+    text: {'shape': [2, 77, 768], 'dtype': 'float32'}
+  output_shape: [2, 10]
+
+# 实验规模
+experiment_size:
+  num_samples: 20              # 生成20个架构验证
+  target_end2end_rate: 0.80    # 目标80%端到端成功率
+
+# 评估指标 (端到端)
+metrics:
+  - stage1_compile_rate        # 阶段1: 编译成功率
+  - stage2_shape_rate          # 阶段2: 形状验证成功率
+  - stage3_training_rate       # 阶段3: 训练成功率 (关键!)
+  - stage4_inference_rate      # 阶段4: 推理成功率
+  - overall_end2end_rate       # 总体端到端成功率
+  - avg_convergence_epochs     # 平均收敛epoch数
+  - emergent_patterns          # 涌现模式统计
+
+# 输出文件
+output:
+  end2end_report: "results/round1/end2end_report.md"
+  success_cases_dir: "results/round1/success_cases/"
+  failure_analysis: "results/round1/failure_analysis.json"
+  training_curves: "results/round1/training_curves/"
