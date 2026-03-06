@@ -1,0 +1,31 @@
+# EAS实验硬件配置
+# 服务器: NTU GPU43
+
+hardware:
+  server: "NTU GPU43"
+  host: "gpu43.dynip.ntu.edu.sg"
+  user: "s125mdg43_10"
+
+  gpu:
+    model: "NVIDIA RTX A5000"
+    count: 4
+    memory: "24GB per GPU"
+    driver_version: "535.104.05"
+    cuda_version: "12.2"
+
+  cpu:
+    model: "AMD EPYC 7313"
+    cores: 32
+    memory: "256GB RAM"
+
+  storage:
+    project_path: "/usr1/home/s125mdg43_10/AutoFusion_v3"
+    data_path: "/usr1/home/s125mdg43_10/data"
+    min_free_space: "100GB"
+
+  # GPU分配策略
+  gpu_allocation:
+    gpu_0: "EAS主实验 + DARTS基线"
+    gpu_1: "LLMatic + EvoPrompting基线"
+    gpu_2: "DynMM + FDSNet基线"
+    gpu_3: "ADMN + Centaur基线 / 消融实验"

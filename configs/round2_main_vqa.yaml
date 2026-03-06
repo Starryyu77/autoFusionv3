@@ -1,0 +1,65 @@
+# Round 2: VQA-v2主实验配置
+# 目标: 在VQA-v2数据集上验证跨任务泛化性
+
+experiment:
+  name: "round2_main_vqa"
+  round: 2
+  description: "VQA-v2主实验 - 双模态问答任务"
+  output_dir: "results/round2/vqa"
+  log_dir: "logs/round2/vqa"
+
+# 数据集配置
+dataset:
+  name: "VQA-v2"
+  data_path: "/usr1/home/s125mdg43_10/data/vqa_v2_processed"
+  modalities: ["vision", "text"]
+  num_classes: 3129  # VQA答案类别数
+  task_type: "classification"
+
+  # 数据分割 (使用官方分割)
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+
+# 实验方法 (简化为4个主要对比)
+methods:
+  - name: "EAS"
+    enabled: true
+    type: "ours"
+
+  - name: "DARTS"
+    enabled: true
+    type: "baseline"
+
+  - name: "DynMM"
+    enabled: true
+    type: "baseline"
+
+  - name: "ADMN"
+    enabled: true
+    type: "baseline"
+
+# API契约 (VQA规格)
+api_contract:
+  inputs:
+    vision:
+      shape: [2, 197, 768]  # ViT特征 [batch, patches, dim]
+      dtype: "float32"
+    text:
+      shape: [2, 20, 768]   # 问题文本 [batch, seq, dim]
+      dtype: "float32"
+
+  output_shape: [2, 3129]
+
+# 模态缺失配置 (VQA特定: 可缺失图像或问题)
+modality_dropout:
+  probabilities: [0.0, 0.25, 0.5]
+  modes: ["random"]
+  # 缺失模式:
+  # - 图像缺失: 替换为黑色图像
+  # - 问题缺失: 空文本
+
+seeds: [42, 123, 456, 789, 1024]
+
+output:
+  main_results_table: "results/round2/table2_vqa_results.csv"

@@ -1,0 +1,102 @@
+# Round 3: 可解释性与迁移实验配置
+# 目标: 分析涌现结构，验证跨模态迁移
+
+experiment:
+  name: "round3_analysis"
+  round: 3
+  description: "可解释性分析 - AST结构分析与跨模态迁移"
+  output_dir: "results/round3"
+  log_dir: "logs/round3"
+
+# 第一部分: AST结构分析
+ast_analysis:
+  enabled: true
+
+  # 输入: Round 2生成的成功架构
+  architecture_dir: "results/round2/best_architectures/"
+
+  # 分析维度
+  analysis_dimensions:
+    - control_flow:      # 控制流结构
+        metrics:
+          - num_if_statements       # if语句数量
+          - num_loops               # 循环数量
+          - conditional_depth       # 条件嵌套深度
+
+    - architecture_patterns:  # 架构模式
+        metrics:
+          - num_residual_connections
+          - num_attention_heads
+          - num_modal_gates         # 模态门控数量
+          - has_early_exit          # 是否有早退出
+
+    - operator_distribution:  # 操作符分布
+        metrics:
+          - activation_functions
+          - normalization_layers
+          - fusion_operations
+
+  # 相关性分析
+  correlation_analysis:
+    target: "reward"  # 与奖励值的相关性
+    methods: ["pearson", "spearman"]
+
+  output:
+    structure_stats: "results/round3/table4_structure_stats.csv"
+    correlation_matrix: "results/round3/correlation_matrix.png"
+    emergent_patterns_dir: "results/round3/emergent_patterns/"
+
+# 第二部分: 跨模态迁移
+cross_modal_transfer:
+  enabled: true
+
+  # 迁移实验配置
+  transfer_experiments:
+    - name: "MOSEI_to_VQA"
+      source:
+        dataset: "CMU-MOSEI"
+        arch_path: "results/round2/best_architectures/eas_mosei_best.py"
+      target:
+        dataset: "VQA-v2"
+        adaptation: "zero_shot"  # 零样本迁移
+
+    - name: "MOSEI_to_IEMOCAP"
+      source:
+        dataset: "CMU-MOSEI"
+        arch_path: "results/round2/best_architectures/eas_mosei_best.py"
+      target:
+        dataset: "IEMOCAP"
+        adaptation: "zero_shot"
+
+    - name: "VQA_to_MOSEI"
+      source:
+        dataset: "VQA-v2"
+        arch_path: "results/round2/best_architectures/eas_vqa_best.py"
+      target:
+        dataset: "CMU-MOSEI"
+        adaptation: "zero_shot"
+
+  # 迁移评估指标
+  metrics:
+    - source_accuracy
+    - target_accuracy
+    - accuracy_drop          # 迁移后性能下降
+    - transfer_efficiency    # 迁移效率
+
+  output:
+    transfer_table: "results/round3/transfer_results.csv"
+
+# 第三部分: 进化过程可视化
+evolution_visualization:
+  enabled: true
+  input_log: "results/round2/mosei/eas_evolution_log.json"
+
+  visualization_types:
+    - fitness_trajectory     # 适应度轨迹
+    - code_complexity        # 代码复杂度变化
+    - structure_diversity    # 结构多样性
+
+  output_dir: "results/round3/visualizations/"
+
+output:
+  report: "results/round3/analysis_report.md"

@@ -1,0 +1,68 @@
+# Round 2: 消融实验配置
+# 目标: 验证EAS各组件的必要性
+
+experiment:
+  name: "round2_ablation"
+  round: 2
+  description: "消融实验 - 验证内循环、外循环、LLM的必要性"
+  output_dir: "results/round2/ablation"
+  log_dir: "logs/round2/ablation"
+
+# 数据集 (使用CMU-MOSEI)
+dataset:
+  name: "CMU-MOSEI"
+  data_path: "/usr1/home/s125mdg43_10/data/mosei_processed"
+
+# 消融配置列表
+ablations:
+  - name: "EAS_Full"
+    description: "完整EAS (对照组)"
+    inner_loop:
+      enabled: true
+      max_retries: 3
+    outer_loop:
+      evolver: "cma-es-llm"
+    llm_mutation: true
+
+  - name: "w/o_Inner_Loop"
+    description: "无内循环 (直接生成，不重试)"
+    inner_loop:
+      enabled: false
+      max_retries: 0
+    outer_loop:
+      evolver: "cma-es-llm"
+    llm_mutation: true
+
+  - name: "w/o_Outer_Loop"
+    description: "无外循环 (随机搜索替代CMA-ES)"
+    inner_loop:
+      enabled: true
+      max_retries: 3
+    outer_loop:
+      evolver: "random"
+    llm_mutation: false
+
+  - name: "w/o_LLM_Mutation"
+    description: "无LLM变异 (传统遗传算子)"
+    inner_loop:
+      enabled: true
+      max_retries: 3
+    outer_loop:
+      evolver: "cma-es"
+    llm_mutation: false
+
+  - name: "Fixed_Architecture"
+    description: "固定架构 (只调参，不搜索结构)"
+    inner_loop:
+      enabled: true
+    search:
+      mode: "fixed"
+
+# 统一设置
+modality_dropout:
+  probabilities: [0.0, 0.5]  # 只测完整和50%缺失
+
+seeds: [42, 123, 456, 789, 1024]
+
+output:
+  ablation_table: "results/round2/table3_ablation.csv"

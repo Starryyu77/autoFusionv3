@@ -1,0 +1,79 @@
+# Round 1: 内循环验证实验配置
+# 目标: 验证编译成功率从5%提升到95%
+
+experiment:
+  name: "round1_inner_loop_validation"
+  round: 1
+  description: "验证SelfHealingCompiler的编译成功率"
+  output_dir: "results/round1"
+  log_dir: "logs/round1"
+  seed: 42
+
+# 内循环配置
+inner_loop:
+  max_retries: 3
+  enable_error_feedback: true
+  enable_shape_verification: true
+
+  # LLM配置 (使用全局api_config.yaml)
+  llm:
+    temperature: 0.7  # 固定
+    # 其他参数从api_config.yaml读取
+
+  # 验证配置
+  validation:
+    syntax_check: true
+    shape_check: true
+    modality_handling_check: true
+    max_compile_timeout: 30  # 秒
+
+# API契约 (CMU-MOSEI规格)
+api_contract:
+  inputs:
+    vision:
+      shape: [2, 576, 1024]  # [batch, seq, dim]
+      dtype: "float32"
+      description: "视觉特征 (CLIP提取)"
+    audio:
+      shape: [2, 400, 512]
+      dtype: "float32"
+      description: "音频特征 (wav2vec提取)"
+    text:
+      shape: [2, 77, 768]
+      dtype: "float32"
+      description: "文本特征 (BERT提取)"
+
+  output_shape: [2, 10]  # 10分类情感分析
+
+  model_kwargs:
+    hidden_dim: 256
+    num_layers: 2
+    dropout: 0.1
+
+# 数据集 (使用toy子集快速验证)
+dataset:
+  name: "mosei_toy"
+  data_path: "data/mosei_toy.pkl"
+  num_samples: 1000  # 只用10%数据快速验证
+  modalities: ["vision", "audio", "text"]
+
+# 实验规模
+experiment_size:
+  num_initial_prompts: 100  # 生成100个初始代码
+  target_success_rate: 0.95  # 目标95%编译成功率
+  max_attempts_per_code: 3   # 最多3次修复
+
+# 评估指标
+metrics:
+  - compile_success_rate
+  - avg_compile_attempts
+  - first_attempt_success_rate
+  - syntax_error_types
+  - shape_error_types
+
+# 输出文件
+output:
+  compile_rate_curve: "results/round1/compile_rate_curve.png"
+  emergent_cases_dir: "results/round1/emergent_cases/"
+  statistics_file: "results/round1/statistics.json"
+  report_file: "results/round1/report.md"

@@ -1,0 +1,126 @@
+# Round 4: 边缘部署与图表生成配置
+# 目标: 边缘设备模拟，生成论文图表
+
+experiment:
+  name: "round4_deployment"
+  round: 4
+  description: "边缘部署模拟与论文图表生成"
+  output_dir: "results/round4"
+  log_dir: "logs/round4"
+
+# 第一部分: 边缘部署模拟
+deployment_simulation:
+  enabled: true
+
+  # 目标设备配置
+  target_devices:
+    - name: "Jetson_Nano"
+      platform: "edge"
+      gpu: "128-core Maxwell"
+      memory: "4GB"
+      max_power: "10W"
+      simulated: true
+
+    - name: "RTX_A5000_Server"
+      platform: "server"
+      gpu: "RTX A5000"
+      memory: "24GB"
+      max_power: "230W"
+      simulated: false  # 真实硬件
+
+  # 评估指标
+  metrics:
+    - inference_latency:      # 推理延迟
+        num_runs: 100
+        warmup_runs: 10
+        percentiles: [50, 90, 99]
+
+    - throughput:             # 吞吐量
+        batch_sizes: [1, 4, 8, 16]
+
+    - energy_consumption:     # 能耗
+        measurement: "simulated"  # 或使用nvidia-smi
+
+    - memory_usage:           # 显存占用
+
+  # 对比方法
+  methods:
+    - EAS
+    - ADMN
+    - DynMM
+
+  output:
+    deployment_table: "results/round4/table_deployment.csv"
+    latency_distribution: "results/round4/latency_distribution.png"
+
+# 第二部分: 论文图表生成
+figure_generation:
+  enabled: true
+
+  # 所有图表列表
+  figures:
+    - id: "fig1"
+      name: "双闭环架构图"
+      script: "scripts/generate_fig1_architecture.py"
+      output: "figures/fig1_architecture.png"
+
+    - id: "fig2"
+      name: "内循环编译成功率曲线"
+      data_source: "results/round1/statistics.json"
+      script: "scripts/generate_fig2_compile_rate.py"
+      output: "figures/fig2_compile_rate.png"
+
+    - id: "fig3"
+      name: "主实验结果对比"
+      data_source: "results/round2/table2_main_results.csv"
+      script: "scripts/generate_fig3_main_results.py"
+      output: "figures/fig3_main_results.png"
+
+    - id: "fig4"
+      name: "消融实验雷达图"
+      data_source: "results/round2/table3_ablation.csv"
+      script: "scripts/generate_fig4_ablation.py"
+      output: "figures/fig4_ablation.png"
+
+    - id: "fig5"
+      name: "样本效率曲线"
+      data_source: "results/round2/"
+      script: "scripts/generate_fig5_sample_efficiency.py"
+      output: "figures/fig5_sample_efficiency.png"
+
+    - id: "fig6"
+      name: "涌现结构AST可视化"
+      data_source: "results/round3/emergent_patterns/"
+      script: "scripts/generate_fig6_ast_viz.py"
+      output: "figures/fig6_ast_viz.png"
+
+    - id: "fig7"
+      name: "条件分支密度分布"
+      data_source: "results/round3/"
+      script: "scripts/generate_fig7_branch_density.py"
+      output: "figures/fig7_branch_density.png"
+
+  output_dir: "figures/"
+
+# 第三部分: 统计分析
+statistical_analysis:
+  enabled: true
+
+  tests:
+    - name: "significance_test"
+      method: "paired_t_test"
+      alpha: 0.01
+      comparisons:
+        - [EAS, DARTS]
+        - [EAS, ADMN]
+        - [EAS, DynMM]
+
+    - name: "emergent_pattern_clustering"
+      method: "k_means"
+      n_clusters: 3
+      features: ["num_if", "num_residual", "mRob"]
+
+output:
+  all_figures_dir: "figures/"
+  supplementary_materials: "supplementary/"
+  final_report: "results/round4/final_report.md"

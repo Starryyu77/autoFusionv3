@@ -1,0 +1,43 @@
+# Round 2: IEMOCAP主实验配置
+# 目标: 在IEMOCAP数据集上验证情感识别任务
+
+experiment:
+  name: "round2_main_iemocap"
+  round: 2
+  description: "IEMOCAP主实验 - 三模态情感识别"
+  output_dir: "results/round2/iemocap"
+  log_dir: "logs/round2/iemocap"
+
+# 数据集配置
+dataset:
+  name: "IEMOCAP"
+  data_path: "/usr1/home/s125mdg43_10/data/iemocap_processed"
+  modalities: ["vision", "audio", "text"]
+  num_classes: 9  # 9种情感类别
+  task_type: "classification"
+
+  # 数据分割 (按session划分，避免同一说话人泄露)
+  leave_out_session: 5  # 留一个session做测试
+
+# 实验方法
+methods:
+  - name: "EAS"
+    enabled: true
+    type: "ours"
+
+  - name: "DARTS"
+    enabled: true
+    type: "baseline"
+
+  - name: "FDSNet"
+    enabled: true
+    type: "baseline"
+
+  - name: "Centaur"
+    enabled: true
+    type: "baseline"
+
+seeds: [42, 123, 456, 789, 1024]
+
+output:
+  main_results_table: "results/round2/table2_iemocap_results.csv"

@@ -1,0 +1,105 @@
+# Round 2: CMU-MOSEI主实验配置
+# 目标: 在CMU-MOSEI数据集上对比所有基线方法
+
+experiment:
+  name: "round2_main_mosei"
+  round: 2
+  description: "CMU-MOSEI主实验 - 对比EAS与6个基线"
+  output_dir: "results/round2/mosei"
+  log_dir: "logs/round2/mosei"
+
+# 数据集配置
+dataset:
+  name: "CMU-MOSEI"
+  data_path: "/usr1/home/s125mdg43_10/data/mosei_processed"
+  modalities: ["vision", "audio", "text"]
+  num_classes: 10
+  task_type: "sentiment_regression"  # 情感强度回归
+
+  # 数据分割
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+# 实验方法
+methods:
+  - name: "EAS"
+    enabled: true
+    type: "ours"
+
+  - name: "DARTS"
+    enabled: true
+    type: "baseline"
+    source: "src/baselines/darts.py"
+
+  - name: "LLMatic"
+    enabled: true
+    type: "baseline"
+    source: "src/baselines/llmatic.py"
+
+  - name: "EvoPrompting"
+    enabled: true
+    type: "baseline"
+    source: "src/baselines/evo_prompting.py"
+
+  - name: "DynMM"
+    enabled: true
+    type: "baseline"
+    source: "src/baselines/dynmm.py"
+
+  - name: "FDSNet"
+    enabled: true
+    type: "baseline"
+    source: "src/baselines/fdsnet.py"
+
+  - name: "ADMN"
+    enabled: true
+    type: "baseline"
+    source: "src/baselines/admn.py"
+
+  - name: "Centaur"
+    enabled: true
+    type: "baseline"
+    source: "src/baselines/centaur.py"
+
+# EAS特定配置
+eas_config:
+  inner_loop:
+    max_retries: 3
+
+  outer_loop:
+    pop_size: 10
+    max_generations: 100
+    early_stop_patience: 20
+
+  reward_weights:
+    accuracy: 1.0
+    mrob: 2.0
+    flops: 0.5
+
+# 模态缺失配置
+modality_dropout:
+  probabilities: [0.0, 0.25, 0.5]
+  modes: ["random"]
+
+# 随机种子
+seeds: [42, 123, 456, 789, 1024]
+
+# 训练配置 (继承training_config.yaml，可覆盖)
+training:
+  epochs: 15
+  batch_size: 32
+  learning_rate: 0.001
+
+# 评估指标
+metrics:
+  - mAcc  # 平均准确率
+  - mRob  # 模态鲁棒性
+  - GFLOPs  # 计算量
+  - Latency  # 延迟
+
+# 输出文件
+output:
+  main_results_table: "results/round2/table2_main_results.csv"
+  learning_curves_dir: "results/round2/learning_curves/"
+  best_architectures_dir: "results/round2/best_architectures/"

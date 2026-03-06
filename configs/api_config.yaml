@@ -1,0 +1,31 @@
+# EAS实验API配置
+# 所有实验必须使用此配置，确保API调用参数完全一致
+# 版本: v1.1
+
+api:
+  provider: "aliyun"
+  base_url: "https://dashscope.aliyuncs.com/api/v1"
+  api_key: "${ALIYUN_API_KEY}"  # 从环境变量读取
+
+  # 主实验使用模型 (固定为kimi-k2.5)
+  default_model: "kimi-k2.5"
+
+  # 备用模型 (主模型超限时切换)
+  fallback_models: ["glm-5", "qwen-max"]
+
+  # 统一参数 (所有实验必须一致，禁止修改)
+  temperature: 0.7  # 控制创造性，固定
+  max_tokens: 2048  # 代码生成足够用
+  top_p: 0.95
+
+  # 重试策略
+  retry:
+    max_attempts: 5
+    backoff_factor: 2  # 指数退避
+    initial_wait: 4    # 首次等待4秒
+    max_wait: 60       # 最大等待60秒
+
+  # API调用限制 (用于成本控制)
+  limits:
+    max_calls_per_experiment: 1000  # 单个实验最大调用次数
+    max_tokens_per_experiment: 500000  # 单个实验最大token数
