@@ -1,8 +1,12 @@
 # EAS 实验控制协议
 
 **文档目的**: 确保所有实验的可重复性、可比性和严谨性
-**版本**: v1.0
+**版本**: v1.1
 **最后更新**: 2026-03-06
+
+**变更记录**:
+- v1.1: 固定使用 `kimi-k2.5` 作为主模型 (用户确认)
+- v1.0: 初始版本
 
 ---
 
@@ -41,7 +45,7 @@
 **提供商**: Aliyun Bailian ( dashscope )
 **理由**:
 - 在AutoFusion 1.0/2.0中已验证稳定性
-- 支持多种模型 (qwen-max, glm-5, kimi-k2.5)
+- 支持多种模型 (kimi-k2.5, glm-5, qwen-max)
 - 成本可控
 
 ```yaml
@@ -51,11 +55,11 @@ api:
   base_url: "https://dashscope.aliyuncs.com/api/v1"
   api_key: "${ALIYUN_API_KEY}"  # 从环境变量读取
 
-  # 主实验使用模型
-  default_model: "qwen-max"  # 或 "kimi-k2.5"
+  # 主实验使用模型 (固定)
+  default_model: "kimi-k2.5"
 
   # 备用模型 (主模型超限时切换)
-  fallback_models: ["glm-5", "deepseek-v3"]
+  fallback_models: ["glm-5", "qwen-max"]
 
   # 统一参数 (所有实验必须一致)
   temperature: 0.7  # 控制创造性，固定
