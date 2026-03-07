@@ -81,11 +81,24 @@ class UnifiedLLMBackend:
 
         self.api_config = self.config['api']
         self.model = self.api_config['default_model']  # 固定: kimi-k2.5
-        self.api_key = os.environ.get('ALIYUN_API_KEY')
+
+        # 支持 ALIYUN_API_KEY, DASHSCOPE_API_KEY, 或 DEEPSEEK_API_KEY
+        self.api_key = (
+            os.environ.get('ALIYUN_API_KEY') or
+            os.environ.get('DASHSCOPE_API_KEY') or
+            os.environ.get('DEEPSEEK_API_KEY')
+        )
+
+        # 如果设置了 DEEPSEEK_API_KEY，使用 DeepSeek 的 base_url
+        if os.environ.get('DEEPSEEK_API_KEY') and not os.environ.get('ALIYUN_API_KEY'):
+            self.api_config['base_url'] = 'https://api.deepseek.com/v1'
+            self.api_config['default_model'] = 'deepseek-chat'
+            self.api_config['fallback_models'] = ['deepseek-coder']
+            print("🔄 Using DeepSeek API")
 
         if not self.api_key:
             raise ValueError(
-                "ALIYUN_API_KEY environment variable not set. "
+                "ALIYUN_API_KEY, DASHSCOPE_API_KEY, or DEEPSEEK_API_KEY environment variable not set. "
                 "Please set it before running experiments."
             )
 

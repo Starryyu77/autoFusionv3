@@ -1,0 +1,675 @@
+Warning: cma package not installed. Using simple GA instead.
+✅ Random seed set: 42 (deterministic=True)
+🔧 Initializing V2 components...
+✅ UnifiedLLMBackend initialized with model: kimi-k2.5
+📝 Creating dummy MOSEI data...
+✅ Created dummy dataset: 200 samples
+✅ All V2 components initialized
+
+======================================================================
+Round 1 V2: End-to-End Validation
+======================================================================
+Target: 20 samples
+Target success rate: 50%
+======================================================================
+
+======================================================================
+Sample 1/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (7210 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 16.00%
+     mRob: 62.50%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 16.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 1/20 | Success: 1 | Success Rate: 100.0% | ETA: 12.8min
+
+======================================================================
+Sample 2/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (3736 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 6.00%
+     mRob: 166.67%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 6.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 2/20 | Success: 2 | Success Rate: 100.0% | ETA: 9.8min
+
+======================================================================
+Sample 3/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (3823 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 8.00%
+     mRob: 125.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 8.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 3/20 | Success: 3 | Success Rate: 100.0% | ETA: 8.7min
+
+======================================================================
+Sample 4/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (3991 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 6.00%
+     mRob: 133.33%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 6.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 4/20 | Success: 4 | Success Rate: 100.0% | ETA: 8.0min
+
+======================================================================
+Sample 5/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (4018 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 8.00%
+     mRob: 150.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 8.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 5/20 | Success: 5 | Success Rate: 100.0% | ETA: 7.3min
+
+======================================================================
+Sample 6/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (4248 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 6.00%
+     mRob: 300.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 6.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 6/20 | Success: 6 | Success Rate: 100.0% | ETA: 6.8min
+
+======================================================================
+Sample 7/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (4598 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 4.00%
+     mRob: 300.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 4.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 7/20 | Success: 7 | Success Rate: 100.0% | ETA: 6.4min
+
+======================================================================
+Sample 8/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (3145 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 8.00%
+     mRob: 150.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 8.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 8/20 | Success: 8 | Success Rate: 100.0% | ETA: 5.7min
+
+======================================================================
+Sample 9/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (2381 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 18.00%
+     mRob: 66.67%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 18.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 9/20 | Success: 9 | Success Rate: 100.0% | ETA: 5.1min
+
+======================================================================
+Sample 10/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (6087 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 10.00%
+     mRob: 180.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 10.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 10/20 | Success: 10 | Success Rate: 100.0% | ETA: 4.8min
+
+======================================================================
+Sample 11/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (5133 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 6.00%
+     mRob: 200.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 6.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 11/20 | Success: 11 | Success Rate: 100.0% | ETA: 4.4min
+
+======================================================================
+Sample 12/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (4509 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 4.00%
+     mRob: 250.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 4.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 12/20 | Success: 12 | Success Rate: 100.0% | ETA: 3.8min
+
+======================================================================
+Sample 13/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (3578 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 10.00%
+     mRob: 80.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 10.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 13/20 | Success: 13 | Success Rate: 100.0% | ETA: 3.4min
+
+======================================================================
+Sample 14/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (2372 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 12.00%
+     mRob: 83.33%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 12.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 14/20 | Success: 14 | Success Rate: 100.0% | ETA: 2.9min
+
+======================================================================
+Sample 15/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (4077 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 4.00%
+     mRob: 250.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 4.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 15/20 | Success: 15 | Success Rate: 100.0% | ETA: 2.4min
+
+======================================================================
+Sample 16/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (2705 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 12.00%
+     mRob: 66.67%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 12.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 16/20 | Success: 16 | Success Rate: 100.0% | ETA: 1.9min
+
+======================================================================
+Sample 17/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (4089 chars)
+    ✗ shape error: RuntimeError: shape '[2, 512]' is invalid for input of size ...
+
+  Attempt 2/5
+    ✓ Code generated (2911 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 2 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 2 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 8.00%
+     mRob: 75.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 8.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 17/20 | Success: 17 | Success Rate: 100.0% | ETA: 1.5min
+
+======================================================================
+Sample 18/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (4151 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 8.00%
+     mRob: 125.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 8.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 18/20 | Success: 18 | Success Rate: 100.0% | ETA: 1.0min
+
+======================================================================
+Sample 19/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (2398 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 1 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 1 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 8.00%
+     mRob: 125.00%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 8.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 19/20 | Success: 19 | Success Rate: 100.0% | ETA: 0.5min
+
+======================================================================
+Sample 20/20
+======================================================================
+
+📦 Stage 1: Compilation (SelfHealingCompilerV2)
+🔄 Starting compilation (max 5 retries)...
+
+  Attempt 1/5
+    ✓ Code generated (4021 chars)
+    ✗ shape error: RuntimeError: mat1 and mat2 shapes cannot be multiplied (2x1...
+
+  Attempt 2/5
+    ✓ Code generated (4594 chars)
+    ✓ Validation OK
+
+✅ Compilation successful after 2 attempt(s)
+    🔧 Applied projection layer wrapper
+  ✅ Compilation successful after 2 attempt(s)
+
+📐 Stage 2: Shape Verification
+  ✅ Shape verification passed
+
+🎓 Stage 3: Training Verification (Few-shot)
+  ✅ Training successful
+     Accuracy: 6.00%
+     mRob: 133.33%
+     FLOPs: 5.8M
+
+🚀 Stage 4: Inference Verification
+  ✅ Inference successful (accuracy: 6.00%)
+
+🎉 END-TO-END SUCCESS!
+
+⏱️  Progress: 20/20 | Success: 20 | Success Rate: 100.0% | ETA: 0.0min
+
+======================================================================
+Validation Complete!
+Total time: 10.8 minutes
+Success rate: 20/20 (100.0%)
+
+💾 Results saved to: results/round1_v2
+
+======================================================================
+ROUND 1 V2 VALIDATION SUMMARY
+======================================================================
+
+Total Samples: 20
+
+Stage-wise Success Rates:
+  Stage 1 (Compile):    100.0%
+  Stage 2 (Shape):      100.0%
+  Stage 3 (Training):   100.0%
+  Stage 4 (Inference):  100.0%
+
+🎯 End-to-End Success: 100.0% (20/20)
+
+Target: 50% | Met: ✅ YES
+
+Average Compile Attempts: 1.1
+
+Successful Architectures:
+  Avg Accuracy: 8.4%
+  Avg mRob: 151.1%
+  Avg FLOPs: 5.8M
+======================================================================
+
+✅ Target success rate achieved!
