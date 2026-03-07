@@ -59,8 +59,8 @@ class ShapeVerifier:
                 return False, "No valid nn.Module class found in code"
 
             # 3. 创建模型实例
-            model_kwargs = api_contract.get('model_kwargs', {})
-            model = model_class(**model_kwargs)
+            # 尝试不同的初始化方式
+            model = self._create_model_instance(model_class, api_contract)
             model = model.to(self.device)
             model.eval()
 
@@ -95,6 +95,37 @@ class ShapeVerifier:
                 'traceback': tb
             })
             return False, error_msg
+
+    def _create_model_instance(self, model_class: type, api_contract: dict):
+        """创建模型实例，优先尝试无参数初始化"""
+        import inspect
+
+        sig = inspect.signature(model_class.__init__)
+        params = list(sig.parameters.keys())
+
+        # 首先尝试无参数初始化
+        if len(params) <= 1:  # 只有 self
+            return model_class()
+
+        # 检查是否有 model_kwargs
+        model_kwargs = api_contract.get('model_kwargs', {})
+        if model_kwargs:
+            try:
+                return model_class(**model_kwargs)
+            except:
+                pass
+
+        # 检查是否需要 input_dims 参数
+        if 'input_dims' in params:
+            # 构建 input_dims
+            input_dims = {
+                name: {'shape': spec['shape'], 'dtype': spec.get('dtype', 'float32')}
+                for name, spec in api_contract.get('inputs', {}).items()
+            }
+            return model_class(input_dims=input_dims)
+
+        # 最后的尝试：无参数
+        return model_class()
 
     def _find_model_class(self, namespace: dict) -> Optional[type]:
         """在命名空间中查找nn.Module子类"""

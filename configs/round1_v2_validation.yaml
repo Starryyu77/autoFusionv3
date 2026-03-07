@@ -1,0 +1,106 @@
+# Round 1 V2: End-to-End Validation with V2 Modules
+# Target: Validate 20 samples with 4-stage pipeline
+
+experiment:
+  name: "round1_v2_e2e_validation"
+  round: 1
+  description: "End-to-end validation using V2 modules with 4-stage pipeline"
+  output_dir: "results/round1_v2"
+  log_dir: "logs/round1_v2"
+  seed: 42
+  timestamp: true
+
+# V2 Inner Loop Configuration
+inner_loop:
+  max_retries: 5                    # V2: Increased from 3
+  enable_error_feedback: true       # V2: Error-specific guidance
+  enable_shape_verification: true
+  enable_attempt_history: true      # V2: AttemptRecord tracking
+  device: "cuda"
+
+# V2 Proxy Evaluator Configuration
+evaluator:
+  num_shots: 16                     # Few-shot samples per class
+  num_epochs: 5                     # Training epochs for validation
+  batch_size: 8
+  learning_rate: 0.001
+  max_time: 300                     # Max evaluation time per sample
+  device: "cuda"
+  calculate_mrob: true              # V2: Calculate modality robustness
+
+# Secure Sandbox Configuration
+sandbox:
+  timeout: 120                      # Sandbox execution timeout
+  max_memory_mb: 4096               # Memory limit
+  max_vram_mb: 4096                 # GPU memory limit
+  enable_isolation: true
+
+# Dataset Configuration (MOSEI)
+dataset:
+  name: "CMU-MOSEI"
+  type: "multimodal"
+  path: "/usr1/home/s125mdg43_10/data/mosei_processed"
+  use_dummy_if_missing: true        # Create dummy data if real not available
+  max_samples: 200                  # Limit for quick validation
+  num_classes: 10
+  split_ratios: [0.7, 0.15, 0.15]   # train/val/test
+
+  # Feature dimensions (matching base models)
+  feature_dims:
+    vision: [576, 1024]             # CLIP-ViT-L/14
+    audio: [400, 512]               # wav2vec 2.0
+    text: [77, 768]                 # BERT-Base
+
+# API Contract (for code generation)
+api_contract:
+  inputs:
+    vision:  {'shape': [2, 576, 1024],  'dtype': 'float32'}
+    audio:   {'shape': [2, 400, 512],   'dtype': 'float32'}
+    text:    {'shape': [2, 77, 768],    'dtype': 'float32'}
+  output_shape: [2, 10]
+  num_classes: 10
+
+# 4-Stage Validation Configuration
+validation:
+  # Stage 1: Compilation (Syntax + Shape)
+  stage1_compile:
+    enabled: true
+    max_retries: 5
+
+  # Stage 2: Shape Verification (Dummy forward)
+  stage2_shape:
+    enabled: true
+    verify_output_shape: true
+
+  # Stage 3: Training Verification (Critical!)
+  stage3_training:
+    enabled: true
+    num_epochs: 3
+    min_improvement: 0.01           # Loss must decrease by 1%
+    early_stop_patience: 2
+
+  # Stage 4: Inference Verification
+  stage4_inference:
+    enabled: true
+    num_samples: 50                 # Samples to test
+
+# Experiment Scale
+experiment_size:
+  num_samples: 20                   # Target: 20 architectures
+  target_success_rate: 0.50         # Target: 50% (vs 10% baseline)
+  max_concurrent: 1                 # Sequential execution
+
+# LLM Configuration
+llm:
+  model: "kimi-k2.5"
+  temperature: 0.7
+  max_tokens: 2048
+  use_v2_prompts: true              # V2: Use improved prompts
+
+# Output Configuration
+output:
+  save_success_cases: true
+  save_failure_cases: true
+  save_training_curves: true
+  save_attempt_records: true        # V2: Save AttemptRecord history
+  generate_report: true

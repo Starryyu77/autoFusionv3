@@ -11,10 +11,55 @@
 
 | 轮次 | 状态 | 进度 | 开始时间 | 预计完成 | 实际完成 |
 |------|------|------|----------|----------|----------|
-| **Round 1** | 🔄 进行中 | 快速测试 | 2026-03-07 00:57 | 2026-03-07 01:30 | - |
+| **Round 1** | 🔄 进行中 | V2改进完成 | 2026-03-07 00:57 | 2026-03-07 02:00 | - |
 | **Round 2** | ⏳ 待开始 | 0% | - | - | - |
 | **Round 3** | ⏳ 待开始 | 0% | - | - | - |
 | **Round 4** | ⏳ 待开始 | 0% | - | - | - |
+
+---
+
+## 🆕 重要更新: V2 双循环架构改进完成
+
+基于 Auto-Fusion-v2 成功经验，已完成双循环架构 V2 改进。
+
+### V2 改进模块
+
+| 模块 | 文件 | 状态 | 关键改进 |
+|------|------|------|----------|
+| SelfHealingCompilerV2 | `src/inner_loop/self_healing_v2.py` | ✅ 已完成 | AttemptRecord + 错误指导 |
+| SecureSandbox | `src/sandbox/secure_sandbox.py` | ✅ 已完成 | 多进程隔离 + 资源限制 |
+| ProxyEvaluatorV2 | `src/evaluator/proxy_evaluator_v2.py` | ✅ 已完成 | ModelWrapper + mRob |
+| EASEvolverV2 | `src/outer_loop/evolver_v2.py` | ✅ 已完成 | 三阶段策略 + 历史反馈 |
+| RewardFunction | `src/outer_loop/reward.py` | ✅ 已完成 | 指数惩罚机制 |
+
+### V2 模块测试 ✅
+
+```bash
+$ python experiments/test_v2_quick.py
+
+Test Summary
+SelfHealingCompilerV2          ✅ PASS
+SecureSandbox                  ✅ PASS
+ProxyEvaluatorV2               ✅ PASS
+EASEvolverV2                   ✅ PASS
+RewardFunction                 ✅ PASS
+```
+
+### Round 1 V2 实验脚本 ✅
+
+| 文件 | 状态 | 说明 |
+|------|------|------|
+| `configs/round1_v2_validation.yaml` | ✅ 已部署 | V2 实验配置 |
+| `experiments/run_round1_v2_validation.py` | ✅ 已部署 | 4-stage 验证脚本 |
+| `results/round1_v2/` | ⏳ 等待运行 | 输出目录 |
+
+**当前状态**: 已部署到 NTU GPU43，等待有效 API key 运行
+
+### 详细文档
+- `docs/DUAL_LOOP_V2_IMPROVEMENTS.md` - V2 改进详解
+- `docs/ROUND1_V2_STATUS.md` - 实验状态
+
+---
 
 ---
 
