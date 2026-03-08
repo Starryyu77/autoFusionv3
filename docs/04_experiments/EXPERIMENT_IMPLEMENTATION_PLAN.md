@@ -190,7 +190,7 @@ wget https://github.com/yaohungt/Multimodal-Transformer/raw/master/IEMOCAP_featu
 | LLMatic | 低 | ~300 | 复用我们的LLM backend |
 | EvoPrompting | 低 | ~200 | 复用进化框架 |
 | DynMM | 中 | ~400 | pytorch |
-| FDSNet | 中 | ~400 | 论文复现 |
+| TFN | 低 | ~300 | 张量融合，稳定开源 |
 | ADMN | 高 | ~600 | 层级控制逻辑复杂 |
 | Centaur | 中 | ~350 | denoising autoencoder |
 
@@ -252,7 +252,7 @@ autofusionv3/
 │   │   ├── llmatic.py
 │   │   ├── evo_prompting.py
 │   │   ├── dynmm.py
-│   │   ├── fdsnet.py
+│   │   ├── tfn.py
 │   │   ├── admn.py
 │   │   └── centaur.py
 │   │
@@ -748,7 +748,7 @@ CUDA_VISIBLE_DEVICES=1 python experiments/run_round2_main.py \
 ```bash
 #!/bin/bash
 
-METHODS=("eas" "darts" "llmatic" "evo_prompting" "dynmm" "fdsnet" "admn" "centaur")
+METHODS=("eas" "darts" "llmatic" "evo_prompting" "dynmm" "tfn" "admn" "centaur")
 SEEDS=(42 123 456 789 1024)
 DROP_PROBS=(0.0 0.25 0.5)
 

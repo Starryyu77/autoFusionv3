@@ -15,7 +15,7 @@
 | **LLMatic** | 可能无特定基座 | 代码生成NAS | 强制使用CLIP特征 |
 | **EvoPrompting** | 可能无特定基座 | 代码级NAS | 强制使用CLIP特征 |
 | **DynMM** | 可能有自定义基座 | 多模态融合 | 强制使用CLIP特征 |
-| **FDSNet** | Camera+LiDAR (自动驾驶) | 多模态检测 | 强制使用CLIP特征 |
+| **TFN** | Tensor Fusion Network | 多模态情感 | 强制使用CLIP特征 | 替换FDSNet (更可靠) |
 | **ADMN** | 可能有自定义基座 | 自适应多模态 | 强制使用CLIP特征 |
 | **Centaur** | 传感器数据 | 活动识别 | 强制使用CLIP特征 |
 
@@ -118,7 +118,7 @@ class [MethodName]Fusion(nn.Module):
     """
 
     def __init__(self,
-                 hidden_dim: int = 256,
+                 hidden_dim: int = 1024,
                  num_modalities: int = 3,
                  **kwargs):
         super().__init__()
@@ -196,7 +196,7 @@ class BaselineModelWrapper(nn.Module):
                  input_dims: Dict[str, int],
                  num_classes: int,
                  backbone_dims: Dict[str, int],
-                 hidden_dim: int = 256):
+                 hidden_dim: int = 1024):
         super().__init__()
 
         # 基座特征投影层（将所有基座特征投影到统一维度）
@@ -261,9 +261,9 @@ class BaselineModelWrapper(nn.Module):
 | 要素 | 统一值 | 说明 |
 |------|--------|------|
 | **基座模型** | CLIP/wav2vec/BERT | 所有方法相同 |
-| **基座输出维度** | 1024/1024/768 | 固定 |
-| **投影后维度** | 256 | 所有方法相同 |
-| **训练轮数** | 15 | few-shot评估 |
+| **基座输出维度** | 768/1024/768 | 固定 (CLIP/wav2vec/BERT原始输出) |
+| **投影后维度** | 1024 | 统一投影到1024维 |
+| **训练轮数** | 50 | 完整训练 (Round 2主实验) |
 | **优化器** | AdamW, lr=0.001 | 相同 |
 | **数据增强** | 无 | 基座特征已提取 |
 | **评估指标** | mAcc, mRob, GFLOPs | 统一 |
@@ -322,8 +322,8 @@ class BaselineModelWrapper(nn.Module):
 
 - [ ] 使用了 `BaselineModelWrapper` 或等效机制
 - [ ] 基座特征维度与CLIP/wav2vec/BERT一致
-- [ ] 投影后维度为256（与EAS一致）
-- [ ] 训练配置与EAS一致（15 epochs, AdamW, lr=0.001）
+- [ ] 投影后维度为1024（与EAS一致）
+- [ ] 训练配置与EAS一致（50 epochs, AdamW, lr=0.001）
 - [ ] 使用了统一的 `UnifiedModalityDropout` 进行模态缺失测试
 - [ ] 在5个固定种子上运行
 - [ ] 实现了 `get_flops()` 方法用于计算量统计

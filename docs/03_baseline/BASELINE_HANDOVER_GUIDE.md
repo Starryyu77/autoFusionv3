@@ -19,7 +19,7 @@ autofusionv3/
 │   │   ├── llmatic.py                # 【待实现】
 │   │   ├── evo_prompting.py          # 【待实现】
 │   │   ├── dynmm.py                  # 【待实现】
-│   │   ├── fdsnet.py                 # 【待实现】
+│   │   ├── tfn.py                    # 【待实现】
 │   │   ├── admn.py                   # 【待实现】
 │   │   └── centaur.py                # 【待实现】
 │   │
@@ -62,7 +62,7 @@ autofusionv3/
 | **LLMatic** | [Nasir et al., GECCO 2024](https://arxiv.org/abs/2306.01102) | P0 | 中 | ~300行 |
 | **EvoPrompting** | [Chen et al., NeurIPS 2023](https://arxiv.org/abs/2302.14838) | P0 | 中 | ~300行 |
 | **DynMM** | [Xue & Marculescu, CVPR 2023](https://arxiv.org/abs/2204.00102) | P0 | 高 | ~400行 |
-| **FDSNet** | [Mohammed et al., Nature 2025](https://www.nature.com/articles/s41598-025-25693-y) | P1 | 中 | ~400行 |
+| **TFN** | [Zadeh et al., EMNLP 2017](https://arxiv.org/abs/1707.07250) | P0 | 低 | ~300行 |
 | **ADMN** | [Wu et al., NeurIPS 2025](https://arxiv.org/abs/2502.07862) | P1 | 高 | ~600行 |
 | **Centaur** | [Xaviar et al., IEEE Sensors 2024](https://arxiv.org/abs/2303.04636) | P1 | 中 | ~350行 |
 
@@ -86,7 +86,7 @@ class BaselineModel(nn.Module):
         self,
         input_dims: Dict[str, int],      # {'vision': 1024, 'audio': 512, 'text': 768}
         num_classes: int,                 # 输出类别数
-        hidden_dim: int = 256,            # 隐藏层维度 (统一)
+        hidden_dim: int = 1024,           # 隐藏层维度 (统一为1024)
         **kwargs                          # 方法特定参数
     ):
         super().__init__()
@@ -134,7 +134,7 @@ class [MethodName]Model(nn.Module):
         self,
         input_dims: Dict[str, int],
         num_classes: int,
-        hidden_dim: int = 256,
+        hidden_dim: int = 1024,
         **kwargs
     ):
         super().__init__()
@@ -259,7 +259,7 @@ dropout = UnifiedModalityDropout(drop_prob=0.50, mode='random', seed=42)
 - [ ] `src/baselines/llmatic.py` - LLMatic实现
 - [ ] `src/baselines/evo_prompting.py` - EvoPrompting实现
 - [ ] `src/baselines/dynmm.py` - DynMM实现
-- [ ] `src/baselines/fdsnet.py` - FDSNet实现 (可选)
+- [ ] `src/baselines/tfn.py` - TFN实现
 - [ ] `src/baselines/admn.py` - ADMN实现 (可选)
 - [ ] `src/baselines/centaur.py` - Centaur实现 (可选)
 
@@ -299,7 +299,7 @@ DARTS,42,0.5,0.320,0.55,12.3,15.2
 |------|------|--------|
 | Week 1 | DARTS + LLMatic | 2个基线 + 报告 |
 | Week 2 | EvoPrompting + DynMM | 2个基线 + 报告 |
-| Week 3 | FDSNet + ADMN + Centaur | 3个基线 + 报告 |
+| Week 3 | TFN + ADMN + Centaur | 3个基线 + 报告 |
 | Week 4 | 结果整合 | 所有CSV + 汇总表格 |
 
 ---

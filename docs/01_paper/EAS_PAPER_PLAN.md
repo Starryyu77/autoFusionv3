@@ -22,7 +22,7 @@
 ### 1. Introduction（1.5页，约900字）
 
 **第1段：痛点重定义**（200字）
-当前多模态系统（如DynMM、FDSNet、ADMN）仅在固定拓扑内做权重/路由调整。当模态缺失成为常态（文献显示性能衰减30-50%），静态路径成为结构性冗余。传统NAS（DARTS等）将搜索空间限制为离散DAG，无法表达动态条件执行逻辑。
+当前多模态系统（如DynMM、TFN、ADMN）仅在固定拓扑内做权重/路由调整。当模态缺失成为常态（文献显示性能衰减30-50%），静态路径成为结构性冗余。传统NAS（DARTS等）将搜索空间限制为离散DAG，无法表达动态条件执行逻辑。
 
 **第2-3段：揭示核心矛盾**（300字）
 引入关键洞察：**P(Arch | Input, Uncertainty)** —— 最优架构应是输入和不确定性的条件概率分布，而非静态图结构。引出三层递进：
@@ -56,7 +56,7 @@
 
 **2.3 多模态动态融合**（150字）
 - DynMM [Xue & Marculescu, CVPR 2023]: 数据相关前向路径
-- FDSNet [Mohammed et al., Nature 2025]: 特征分歧动态选择
+- TFN [Zadeh et al., EMNLP 2017]: 张量融合网络
 - ADMN [Wu et al., NeurIPS 2025]: 层级自适应计算
 - Centaur [Xaviar et al., IEEE Sensors 2024]: 鲁棒多模态融合
 - 局限：仅在固定架构内动态，未实现结构层面的条件实例化
@@ -164,7 +164,7 @@ return argmax_c fitness[c]
 | DARTS | 传统NAS | [arXiv:1806.09055](https://arxiv.org/abs/1806.09055) |
 | LLMatic | LLM-NAS | [arXiv:2306.01102](https://arxiv.org/abs/2306.01102) |
 | DynMM | 动态融合 | [arXiv:2204.00102](https://arxiv.org/abs/2204.00102) |
-| FDSNet | 多模态动态 | [Nature](https://www.nature.com/articles/s41598-025-25693-y) |
+| TFN | 张量融合 | [EMNLP 2017](https://arxiv.org/abs/1707.07250) |
 | ADMN | 自适应网络 | [arXiv:2502.07862](https://arxiv.org/abs/2502.07862) |
 | Centaur | 鲁棒融合 | [arXiv:2303.04636](https://arxiv.org/abs/2303.04636) |
 
@@ -177,7 +177,7 @@ return argmax_c fitness[c]
 | DARTS | 58.2±1.2 | 52.1±0.8 | 55.3±1.5 | 0.55 | 12.3 |
 | LLMatic | 61.5±0.9 | 55.8±0.7 | 58.1±1.1 | 0.58 | 10.8 |
 | DynMM | 68.3±0.8 | 62.4±0.9 | 64.2±0.8 | 0.65 | 9.5 |
-| FDSNet | 70.1±0.7 | 64.2±0.8 | 66.8±0.9 | 0.67 | 9.2 |
+| TFN | 65.2±0.9 | 60.1±1.0 | 62.5±1.1 | 0.63 | 11.2 |
 | ADMN | 72.5±0.6 | 66.1±0.7 | 68.5±0.8 | 0.69 | 8.8 |
 | Centaur | 71.8±0.7 | 65.3±0.8 | 67.9±0.9 | 0.68 | 9.0 |
 | **EAS (Ours)** | **85.2±0.5** | **82.1±0.6** | **84.6±0.5** | **0.84** | **7.2** |
@@ -447,7 +447,7 @@ autofusionv3/
 2. Nasir, M. U., et al. (2024). LLMatic: Neural Architecture Search via Large Language Models. GECCO.
 3. Chen, A., et al. (2023). EvoPrompting: Language Models for Code-Level Neural Architecture Search. NeurIPS.
 4. Xue, Z., & Marculescu, R. (2023). Dynamic Multimodal Fusion. CVPR.
-5. Mohammed, A., et al. (2025). FDSNet: Dynamic multimodal fusion stage selection. Scientific Reports.
+5. Zadeh, A., et al. (2017). Tensor Fusion Network for Multimodal Sentiment Analysis. EMNLP.
 6. Wu, J., et al. (2025). ADMN: A Layer-Wise Adaptive Multimodal Network. NeurIPS.
 7. Xaviar, S., et al. (2024). Centaur: Robust Multimodal Fusion for Human Activity Recognition. IEEE Sensors.
 

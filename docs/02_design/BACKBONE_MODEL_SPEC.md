@@ -140,7 +140,7 @@ EAS生成的代码只负责**融合层**，输入是已提取的特征：
 ```python
 # EAS生成的融合架构示例
 class FusionArchitecture(nn.Module):
-    def __init__(self, hidden_dim=256):
+    def __init__(self, hidden_dim=1024):
         super().__init__()
         # 投影层 (统一维度)
         self.vision_proj = nn.Linear(1024, hidden_dim)

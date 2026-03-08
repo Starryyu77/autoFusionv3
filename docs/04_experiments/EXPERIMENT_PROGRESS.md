@@ -180,7 +180,7 @@ ssh ntu-gpu43 "ls -la /usr1/home/s125mdg43_10/AutoFusion_v3/results/round1/"
 | **LLMatic** | 基线 | ⏳ 待实现 | [待分配] | P0 |
 | **EvoPrompting** | 基线 | ⏳ 待实现 | [待分配] | P0 |
 | **DynMM** | 基线 | ⏳ 待实现 | [待分配] | P0 |
-| **FDSNet** | 基线 | ⏳ 待实现 | [待分配] | P1 |
+| **TFN** | 基线 | ⏳ 待实现 | [待分配] | P0 |
 | **ADMN** | 基线 | ⏳ 待实现 | [待分配] | P1 |
 | **Centaur** | 基线 | ⏳ 待实现 | [待分配] | P1 |
 
@@ -323,7 +323,7 @@ ssh ntu-gpu43 "ls -la /usr1/home/s125mdg43_10/AutoFusion_v3/results/round1/"
 | LLMatic | [同学A] | 中 | 1周 |
 | EvoPrompting | [同学A] | 中 | 1周 |
 | DynMM | [同学B] | 高 | 2周 |
-| FDSNet | [同学B] | 中 | 1周 |
+| TFN | [同学B] | 低 | 3天 |
 | ADMN | [同学C] | 高 | 2周 |
 | Centaur | [同学C] | 中 | 1周 |
 

@@ -16,7 +16,7 @@
 
 ```
 自变量 (Independent Variables):
-├── 搜索方法: {EAS, DARTS, LLMatic, EvoPrompting, DynMM, FDSNet, ADMN, Centaur}
+├── 搜索方法: {EAS, DARTS, LLMatic, EvoPrompting, DynMM, TFN, ADMN, Centaur}
 ├── 模态缺失率: {0%, 25%, 50%}
 └── 数据集: {CMU-MOSEI, VQA-v2, IEMOCAP}
 
@@ -312,8 +312,8 @@ CUDA_VISIBLE_DEVICES=0 python experiments/run_round1.py
 CUDA_VISIBLE_DEVICES=0 python experiments/run_round2_main.py --methods eas,darts &
 # GPU 1: LLMatic + EvoPrompting
 CUDA_VISIBLE_DEVICES=1 python experiments/run_round2_main.py --methods llmatic,evo_prompting &
-# GPU 2: DynMM + FDSNet
-CUDA_VISIBLE_DEVICES=2 python experiments/run_round2_main.py --methods dynmm,fdsnet &
+# GPU 2: DynMM + TFN
+CUDA_VISIBLE_DEVICES=2 python experiments/run_round2_main.py --methods dynmm,tfn &
 # GPU 3: ADMN + Centaur
 CUDA_VISIBLE_DEVICES=3 python experiments/run_round2_main.py --methods admn,centaur &
 
