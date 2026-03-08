@@ -1,0 +1,21 @@
+architecture_id,filename,accuracy,mrob,flops,params,total_lines,num_if_statements,num_for_loops,conditional_depth,has_conditionals,has_modality_gate,has_early_exit,has_residual_connection,num_residual_connections,has_attention,num_attention_layers,num_attention_heads,num_linear_layers,num_norm_layers,num_dropout_layers,activation_types,fusion_operations,emergent_type,emergent_score
+arch_0,arch_0.py,0.1000,1.2000,8954056,6310779,115,0,0,9,False,True,False,False,0,True,4,[8; 8; 8; 8],9,5,2,torch.sigmoid;GELU;nn.GELU;sigmoid,concat,modality_gating,0.3500
+arch_1,arch_1.py,0.0800,1.0000,12085448,6966904,109,0,0,9,False,True,False,False,0,True,2,[8; 8],9,5,2,torch.sigmoid;GELU;nn.GELU;sigmoid,concat,modality_gating,0.3500
+arch_10,arch_10.py,0.0800,1.5000,9336008,6041976,98,0,0,9,False,True,False,False,0,True,3,[8; 8; 8],9,0,2,relu;self.gate_sigmoid;nn.Sigmoid;F.relu;Sigmoid;gate_sigmoid,concat,modality_gating,0.3500
+arch_11,arch_11.py,0.0800,1.0000,9721032,5779320,124,3,1,11,True,True,False,False,0,True,2,[8; 8],9,2,2,torch.sigmoid;nn.ReLU;ReLU;sigmoid,concat,conditional_modality_gating,0.8000
+arch_12,arch_12.py,0.1200,0.5000,12899528,9200760,122,0,0,11,False,True,False,False,0,True,6,[8; 8; 8; 8; 8; 8],12,4,2,Sigmoid;nn.ReLU;ReLU;nn.Sigmoid,concat,modality_gating,0.3500
+arch_13,arch_13.py,0.1200,0.6667,16045256,10769784,138,0,0,11,False,True,False,False,0,True,6,[8; 8; 8; 8; 8; 8],9,3,2,Sigmoid;nn.ReLU;ReLU;nn.Sigmoid,concat,modality_gating,0.3500
+arch_14,arch_14.py,0.1400,1.2857,10245320,6044024,109,0,0,11,False,True,False,True,1,True,2,[],9,4,3,Sigmoid;nn.Sigmoid;GELU;nn.GELU,stack;concat,modality_gating,0.4500
+arch_15,arch_15.py,0.1600,0.6250,5390536,3157371,89,0,0,11,False,True,False,False,0,True,1,[],7,3,1,nn.ReLU;ReLU,stack;concat,modality_gating,0.3500
+arch_16,arch_16.py,0.1200,0.6667,12085448,6963832,112,2,1,11,True,True,False,False,0,True,2,[8; 8],9,2,2,torch.sigmoid;GELU;nn.GELU;sigmoid,concat,conditional_modality_gating,0.7500
+arch_17,arch_17.py,0.0800,1.0000,5040584,3438651,91,0,0,11,False,True,False,False,0,True,2,[8; 8],7,3,2,nn.ReLU;ReLU,stack;concat,modality_gating,0.3500
+arch_18,arch_18.py,0.1600,0.5000,10523848,7095672,96,0,0,11,False,True,False,False,0,True,4,[8; 8; 8; 8],9,3,2,torch.sigmoid;nn.ReLU;ReLU;sigmoid,concat,modality_gating,0.3500
+arch_19,arch_19.py,0.0600,2.0000,13145288,8410488,116,3,1,11,True,True,False,True,1,True,4,[],10,5,2,Sigmoid;nn.Sigmoid;GELU;nn.GELU,concat,conditional_modality_gating,0.9000
+arch_2,arch_2.py,0.0400,3.0000,12114632,8803707,104,0,0,11,False,True,False,False,0,True,6,[8; 8; 8; 8; 8; 8],12,3,2,Sigmoid;nn.ReLU;ReLU;nn.Sigmoid,concat,modality_gating,0.3500
+arch_3,arch_3.py,0.1200,1.5000,14996680,10244984,133,0,0,11,False,True,False,False,0,True,6,[8; 8; 8; 8; 8; 8],8,3,1,Sigmoid;nn.ReLU;ReLU;nn.Sigmoid,concat,modality_gating,0.3500
+arch_4,arch_4.py,0.1200,1.1667,10807752,6325307,109,0,0,11,False,True,False,True,2,True,2,[],10,4,3,GELU;nn.GELU,stack,modality_gating,0.4500
+arch_5,arch_5.py,0.0600,1.3333,8960200,6311291,86,0,0,11,False,True,False,False,0,True,4,[8; 8; 8; 8],9,1,1,torch.sigmoid;nn.ReLU;ReLU;sigmoid,concat;stack,modality_gating,0.3500
+arch_6,arch_6.py,0.1400,0.7143,10769608,6306168,108,0,0,11,False,True,False,False,0,True,2,[8; 8],10,3,1,relu;torch.sigmoid;ReLU;sigmoid;F.relu;nn.ReLU,concat,modality_gating,0.3500
+arch_7,arch_7.py,0.1000,1.4000,17093832,11297400,150,0,0,11,False,True,False,True,1,True,6,[],16,3,2,Sigmoid;nn.ReLU;ReLU;nn.Sigmoid,concat,modality_gating,0.4500
+arch_8,arch_8.py,0.1600,0.6250,11329736,8410491,117,0,0,11,False,True,False,False,0,True,6,[8; 8; 8; 8; 8; 8],7,3,1,nn.ReLU;ReLU,concat,modality_gating,0.3500
+arch_9,arch_9.py,0.0800,1.2500,6970568,3948930,86,0,0,11,False,True,False,True,1,True,1,[8],8,4,2,Sigmoid;nn.ReLU;ReLU;nn.Sigmoid,stack;concat,modality_gating,0.4500

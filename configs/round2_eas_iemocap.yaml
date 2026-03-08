@@ -1,0 +1,86 @@
+# Round 2: EAS Architecture Search on IEMOCAP
+# Parallel experiment (will run on available GPU)
+
+experiment:
+  name: "round2_eas_iemocap"
+  description: "EAS architecture search on IEMOCAP dataset"
+  output_dir: "results/round2/eas_iemocap"
+  log_dir: "logs/round2"
+  seed: 456
+
+# Dataset Configuration
+dataset:
+  name: "IEMOCAP"
+  type: "multimodal"
+  data_path: "/usr1/home/s125mdg43_10/AutoFusion_v3/data/iemocap_processed"
+  num_classes: 4  # IEMOCAP has 4 emotion classes
+  # Feature dimensions from pre-trained models
+  feature_dims:
+    audio: [400, 1024]   # wav2vec 2.0 Large: 1024 dim
+    text: [77, 768]      # BERT-Base: 768 dim
+  # Unified projection to 1024
+  unified_dim: 1024
+
+# EAS Search Configuration
+search:
+  max_iterations: 200
+  strategy: "cma_es"
+  phases:
+    exploration:
+      range: [0, 0.3]
+      temperature: 0.8
+    exploitation:
+      range: [0.3, 0.7]
+      temperature: 0.6
+    refinement:
+      range: [0.7, 1.0]
+      temperature: 0.4
+
+# Inner Loop
+inner_loop:
+  max_retries: 5
+  enable_error_feedback: true
+  enable_shape_verification: true
+  enable_attempt_history: true
+  device: "cuda"
+
+# Proxy Evaluator
+proxy_evaluator:
+  num_shots: 64
+  num_epochs: 10
+  batch_size: 16
+  learning_rate: 0.001
+  max_time: 600
+  device: "cuda"
+  modality_dropout:
+    probs: [0.0, 0.25, 0.50]
+
+# Reward Function
+reward:
+  weights:
+    accuracy: 1.0
+    mrob: 2.0
+    flops_penalty: 0.5
+  target_flops: 10e9
+  max_flops: 50e9
+
+# LLM Configuration
+llm:
+  backend: "aliyun"
+  model: "kimi-k2.5"
+  temperature: 0.7
+  max_tokens: 2048
+
+# Output
+output:
+  save_top_k: 10
+  save_all: false
+  checkpoint_interval: 20
+
+# API Contract (IEMOCAP has audio + text only)
+api_contract:
+  inputs:
+    audio: {shape: [2, 400, 1024], dtype: "float32"}
+    text: {shape: [2, 77, 1024], dtype: "float32"}
+  output_shape: [2, 1024]  # Fusion output, classifier maps to [2, 4]
+  num_classes: 4

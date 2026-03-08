@@ -1,0 +1,222 @@
+{
+  "arch_0": {
+    "sample_id": 0,
+    "file": "arch_0.py",
+    "accuracy": 0.1,
+    "mrob": 1.2,
+    "flops": 8954056,
+    "params": 6310779,
+    "training_time": 2.974200487136841,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_1": {
+    "sample_id": 1,
+    "file": "arch_1.py",
+    "accuracy": 0.08,
+    "mrob": 1.0,
+    "flops": 12085448,
+    "params": 6966904,
+    "training_time": 2.4478907585144043,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_2": {
+    "sample_id": 2,
+    "file": "arch_2.py",
+    "accuracy": 0.04,
+    "mrob": 3.0,
+    "flops": 12114632,
+    "params": 8803707,
+    "training_time": 3.3646068572998047,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_3": {
+    "sample_id": 3,
+    "file": "arch_3.py",
+    "accuracy": 0.12,
+    "mrob": 1.5,
+    "flops": 14996680,
+    "params": 10244984,
+    "training_time": 2.5415737628936768,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_4": {
+    "sample_id": 4,
+    "file": "arch_4.py",
+    "accuracy": 0.12,
+    "mrob": 1.1666666666666667,
+    "flops": 10807752,
+    "params": 6325307,
+    "training_time": 2.804506301879883,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_5": {
+    "sample_id": 5,
+    "file": "arch_5.py",
+    "accuracy": 0.06,
+    "mrob": 1.3333333333333335,
+    "flops": 8960200,
+    "params": 6311291,
+    "training_time": 3.1951868534088135,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_6": {
+    "sample_id": 6,
+    "file": "arch_6.py",
+    "accuracy": 0.14,
+    "mrob": 0.7142857142857143,
+    "flops": 10769608,
+    "params": 6306168,
+    "training_time": 3.106651544570923,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_7": {
+    "sample_id": 7,
+    "file": "arch_7.py",
+    "accuracy": 0.1,
+    "mrob": 1.4000000000000001,
+    "flops": 17093832,
+    "params": 11297400,
+    "training_time": 3.13637375831604,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_8": {
+    "sample_id": 8,
+    "file": "arch_8.py",
+    "accuracy": 0.16,
+    "mrob": 0.625,
+    "flops": 11329736,
+    "params": 8410491,
+    "training_time": 3.1892213821411133,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_9": {
+    "sample_id": 9,
+    "file": "arch_9.py",
+    "accuracy": 0.08,
+    "mrob": 1.25,
+    "flops": 6970568,
+    "params": 3948930,
+    "training_time": 2.9530584812164307,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_10": {
+    "sample_id": 10,
+    "file": "arch_10.py",
+    "accuracy": 0.08,
+    "mrob": 1.5,
+    "flops": 9336008,
+    "params": 6041976,
+    "training_time": 3.1253042221069336,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_11": {
+    "sample_id": 11,
+    "file": "arch_11.py",
+    "accuracy": 0.08,
+    "mrob": 1.0,
+    "flops": 9721032,
+    "params": 5779320,
+    "training_time": 2.841291904449463,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_12": {
+    "sample_id": 12,
+    "file": "arch_12.py",
+    "accuracy": 0.12,
+    "mrob": 0.5,
+    "flops": 12899528,
+    "params": 9200760,
+    "training_time": 2.985795736312866,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_13": {
+    "sample_id": 13,
+    "file": "arch_13.py",
+    "accuracy": 0.12,
+    "mrob": 0.6666666666666667,
+    "flops": 16045256,
+    "params": 10769784,
+    "training_time": 3.896707534790039,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_14": {
+    "sample_id": 14,
+    "file": "arch_14.py",
+    "accuracy": 0.14,
+    "mrob": 1.2857142857142856,
+    "flops": 10245320,
+    "params": 6044024,
+    "training_time": 2.218470811843872,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_15": {
+    "sample_id": 15,
+    "file": "arch_15.py",
+    "accuracy": 0.16,
+    "mrob": 0.625,
+    "flops": 5390536,
+    "params": 3157371,
+    "training_time": 2.2351233959198,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_16": {
+    "sample_id": 16,
+    "file": "arch_16.py",
+    "accuracy": 0.12,
+    "mrob": 0.6666666666666667,
+    "flops": 12085448,
+    "params": 6963832,
+    "training_time": 2.9876294136047363,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_17": {
+    "sample_id": 17,
+    "file": "arch_17.py",
+    "accuracy": 0.08,
+    "mrob": 1.0,
+    "flops": 5040584,
+    "params": 3438651,
+    "training_time": 3.0048959255218506,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_18": {
+    "sample_id": 18,
+    "file": "arch_18.py",
+    "accuracy": 0.16,
+    "mrob": 0.5,
+    "flops": 10523848,
+    "params": 7095672,
+    "training_time": 3.0743353366851807,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  },
+  "arch_19": {
+    "sample_id": 19,
+    "file": "arch_19.py",
+    "accuracy": 0.06,
+    "mrob": 2.0,
+    "flops": 13145288,
+    "params": 8410488,
+    "training_time": 3.3955321311950684,
+    "end2end_success": true,
+    "stage1_attempts": 1
+  }
+}

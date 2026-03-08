@@ -1,0 +1,94 @@
+# Round 2: EAS Architecture Search on CMU-MOSEI
+# 200 iterations of LLM-driven architecture search
+
+experiment:
+  name: "round2_eas_mosei"
+  description: "EAS architecture search on CMU-MOSEI dataset"
+  output_dir: "results/round2/eas_mosei"
+  log_dir: "logs/round2"
+  seed: 42
+
+# Dataset Configuration
+dataset:
+  name: "CMU-MOSEI"
+  type: "multimodal"
+  data_path: "/usr1/home/s125mdg43_10/AutoFusion_v3/data/mosei_processed"
+  num_classes: 10
+  # Feature dimensions from pre-trained models
+  feature_dims:
+    vision: [576, 768]   # CLIP-ViT-L/14: 768 dim
+    audio: [400, 1024]   # wav2vec 2.0 Large: 1024 dim
+    text: [77, 768]      # BERT-Base: 768 dim
+  # Unified projection to 1024
+  unified_dim: 1024
+
+# EAS Search Configuration
+search:
+  max_iterations: 200              # 200 rounds of search
+  strategy: "cma_es"               # CMA-ES optimization
+
+  # Phase scheduling
+  phases:
+    exploration:
+      range: [0, 0.3]              # 0-30%: exploration
+      temperature: 0.8
+    exploitation:
+      range: [0.3, 0.7]            # 30-70%: exploitation
+      temperature: 0.6
+    refinement:
+      range: [0.7, 1.0]            # 70-100%: refinement
+      temperature: 0.4
+
+# Inner Loop (Self-Healing Compilation)
+inner_loop:
+  max_retries: 5
+  enable_error_feedback: true
+  enable_shape_verification: true
+  enable_attempt_history: true
+  device: "cuda"
+
+# Proxy Evaluator (Few-shot Evaluation)
+proxy_evaluator:
+  num_shots: 64                    # 64 shots per class
+  num_epochs: 10                   # 10 epochs for proxy
+  batch_size: 16
+  learning_rate: 0.001
+  max_time: 600                    # 10 min max per evaluation
+  device: "cuda"
+
+  # Modality dropout for mRob calculation
+  modality_dropout:
+    probs: [0.0, 0.25, 0.50]       # 0%, 25%, 50% missing
+
+# Reward Function
+reward:
+  weights:
+    accuracy: 1.0                  # Full modality accuracy
+    mrob: 2.0                      # Modality robustness (core)
+    flops_penalty: 0.5             # Efficiency penalty
+
+  # FLOPs normalization
+  target_flops: 10e9               # 10 GFLOPs target
+  max_flops: 50e9                  # 50 GFLOPs max
+
+# LLM Configuration
+llm:
+  backend: "aliyun"
+  model: "kimi-k2.5"
+  temperature: 0.7
+  max_tokens: 2048
+
+# Output Configuration
+output:
+  save_top_k: 10                   # Save top 10 architectures
+  save_all: false                  # Don't save all attempts
+  checkpoint_interval: 20          # Save every 20 iterations
+
+# API Contract for Code Generation
+api_contract:
+  inputs:
+    vision: {shape: [2, 576, 1024], dtype: "float32"}
+    audio: {shape: [2, 400, 1024], dtype: "float32"}
+    text: {shape: [2, 77, 1024], dtype: "float32"}
+  output_shape: [2, 1024]  # Fusion output, classifier maps to [2, 10]
+  num_classes: 10
