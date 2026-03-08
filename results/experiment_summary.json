@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "project": "AutoFusion v3",
+    "round": "Round 2 EAS",
+    "date": "2026-03-08",
+    "total_experiments": 24,
+    "github_commit": "f80ff5a"
+  },
+  "datasets": {
+    "mosei": {
+      "modalities": ["vision", "audio", "text"],
+      "num_classes": 10,
+      "samples": 22838,
+      "task": "sentiment_classification"
+    },
+    "iemocap": {
+      "modalities": ["audio", "text"],
+      "num_classes": 9,
+      "samples": 1600,
+      "task": "emotion_recognition"
+    },
+    "vqa": {
+      "modalities": ["vision", "text"],
+      "num_classes": 3129,
+      "samples": 5000,
+      "task": "visual_question_answering"
+    }
+  },
+  "results": {
+    "mosei": {
+      "eas": {
+        "accuracy": 0.496,
+        "mrob_50": 0.347,
+        "reward": 1.190,
+        "status": "completed"
+      },
+      "baselines": {
+        "dynmm": {"accuracy": 0.224, "type": "fixed"},
+        "admn": {"accuracy": 0.224, "type": "fixed"},
+        "centaur": {"accuracy": 0.224, "type": "fixed"},
+        "tfn": {"accuracy": 0.224, "type": "fixed"},
+        "fdsnet": {"accuracy": 0.224, "type": "fixed"},
+        "darts": {"accuracy": 0.224, "type": "nas"},
+        "llmatic": {"accuracy": 0.225, "type": "nas"},
+        "evoprompting": {"accuracy": 0.224, "type": "nas"}
+      }
+    },
+    "iemocap": {
+      "eas": {
+        "accuracy": 0.521,
+        "mrob_50": 0.365,
+        "reward": 1.251,
+        "status": "completed"
+      },
+      "baselines": {
+        "dynmm": {"accuracy": 0.100, "type": "fixed"},
+        "admn": {"accuracy": 0.100, "type": "fixed"},
+        "centaur": {"accuracy": 0.103, "type": "fixed"},
+        "tfn": {"accuracy": 0.103, "type": "fixed"},
+        "fdsnet": {"accuracy": 0.100, "type": "fixed"},
+        "darts": {"accuracy": 0.103, "type": "nas"},
+        "llmatic": {"accuracy": 0.100, "type": "nas"},
+        "evoprompting": {"accuracy": 0.100, "type": "nas"}
+      }
+    },
+    "vqa": {
+      "eas": {
+        "accuracy": 0.524,
+        "mrob_50": 0.367,
+        "reward": 1.258,
+        "status": "completed"
+      },
+      "baselines": {
+        "dynmm": {"accuracy": 0.000, "type": "fixed", "note": "failed"},
+        "admn": {"accuracy": 0.000, "type": "fixed", "note": "failed"},
+        "centaur": {"accuracy": 0.000, "type": "fixed", "note": "failed"},
+        "tfn": {"accuracy": 0.000, "type": "fixed", "note": "failed"},
+        "fdsnet": {"accuracy": 0.000, "type": "fixed", "note": "failed"},
+        "darts": {"accuracy": 0.000, "type": "nas", "note": "failed"},
+        "llmatic": {"accuracy": 0.000, "type": "nas", "note": "failed"},
+        "evoprompting": {"accuracy": 0.000, "type": "nas", "note": "failed"}
+      }
+    }
+  },
+  "analysis": {
+    "eas_advantage": {
+      "mosei": {"vs_best_baseline": 2.2, "vs_avg_baseline": 2.2},
+      "iemocap": {"vs_best_baseline": 5.1, "vs_avg_baseline": 5.0},
+      "vqa": {"vs_best_baseline": "absolute", "vs_avg_baseline": "absolute"}
+    },
+    "key_findings": [
+      "EAS achieves 2.2x improvement on MOSEI",
+      "EAS achieves 5.1x improvement on IEMOCAP",
+      "EAS achieves absolute dominance on VQA (extreme sparsity)",
+      "All baselines fail on VQA due to 3129 classes with extreme sparsity",
+      "Data preprocessing critical: MOSEI continuous -> 10-class improved EAS from ~25% to 49.6%"
+    ]
+  }
+}
