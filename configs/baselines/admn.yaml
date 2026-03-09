@@ -54,22 +54,22 @@ datasets:
     path: "data/mosei_processed"
     num_classes: 10
     input_dims:
-      vision: 768
-      audio: 1024
-      text: 768
+      vision: 35
+      audio: 74
+      text: 300
 
   iemocap:
     path: "data/iemocap_processed"
     num_classes: 9
     input_dims:
-      vision: 768
-      audio: 1024
-      text: 768
+      vision: 35
+      audio: 74
+      text: 300
 
   vqa:
     path: "data/vqa_processed"
     num_classes: 3129
     input_dims:
-      vision: 768
-      text: 768
+      vision: 35
+      text: 300
     batch_size: 128

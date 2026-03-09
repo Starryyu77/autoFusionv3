@@ -63,6 +63,11 @@ class TFNFusionModule(nn.Module):
 class TFNCompleteModel(CompleteBaselineModel):
     """TFN完整模型"""
 
+    def __init__(self, input_dims: Dict[str, int], hidden_dim: int = 256,
+                 num_classes: int = 10, is_regression: bool = False, **kwargs):
+        # 忽略reduce_dim等特定参数
+        super().__init__(input_dims, hidden_dim, num_classes, is_regression)
+
     def _create_fusion_module(self) -> nn.Module:
         return TFNFusionModule(self.hidden_dim, len(self.input_dims))
 

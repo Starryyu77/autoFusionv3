@@ -68,7 +68,7 @@ class CentaurFusionModule(nn.Module):
         weighted = attn_out * rel_stack
 
         # 拼接融合
-        flat = weighted.view(B, N * D)
+        flat = weighted.reshape(B, N * D)
         fused = self.fusion(flat)
 
         return self.norm(fused)
@@ -76,6 +76,11 @@ class CentaurFusionModule(nn.Module):
 
 class CentaurCompleteModel(CompleteBaselineModel):
     """Centaur完整模型"""
+
+    def __init__(self, input_dims: Dict[str, int], hidden_dim: int = 256,
+                 num_classes: int = 10, is_regression: bool = False, **kwargs):
+        # 忽略特定参数（Centaur实现中已固定）
+        super().__init__(input_dims, hidden_dim, num_classes, is_regression)
 
     def _create_fusion_module(self) -> nn.Module:
         return CentaurFusionModule(self.hidden_dim, len(self.input_dims))
