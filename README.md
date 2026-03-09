@@ -136,9 +136,46 @@ bash scripts/deploy_to_gpu43.sh
 
 ## 文档
 
+- [基线实验报告](docs/BASELINE_EXPERIMENT_REPORT.md) - 8个基线方法在3个数据集上的完整评估
 - [论文大纲](docs/EAS_PAPER_PLAN.md)
 - [实验实施计划](docs/EXPERIMENT_IMPLEMENTATION_PLAN.md)
 - [实验控制协议](docs/EXPERIMENT_CONTROL_PROTOCOL.md)
+
+---
+
+## 基线实验 (Baseline Experiments)
+
+### 已完成的基线评估
+
+我们系统评估了8个基线方法在3个多模态数据集上的性能：
+
+**测试方法**:
+- 简单基线: Mean, Concat, Attention, Max
+- 固定架构: DynMM (CVPR 2023), TFN (EMNLP 2017), ADMN (NeurIPS 2025), Centaur (IEEE Sensors 2024)
+
+**数据集**:
+- MOSEI: 10类情感分类 (22,777样本)
+- IEMOCAP: 9类情感识别 (10,039样本)
+- VQA: 3,129类视觉问答 (5,000样本)
+
+**关键结果**:
+| 数据集 | 最佳基线 | 准确率 | EAS表现 | 优势 |
+|--------|----------|--------|---------|------|
+| MOSEI | TFN | 28.64% | 49.6% | 1.73x |
+| IEMOCAP | Attention | 11.55% | 52.1% | 4.51x |
+| VQA | TFN/DynMM | 0.04% | 52.4% | 1310x |
+
+**运行基线实验**:
+```bash
+# 在服务器上运行所有基线
+bash START_BASELINE_EXPERIMENTS.sh
+
+# 或并行运行特定数据集
+bash run_iemocap_experiments.sh
+bash run_vqa_experiments.sh
+```
+
+完整报告: [docs/BASELINE_EXPERIMENT_REPORT.md](docs/BASELINE_EXPERIMENT_REPORT.md)
 
 ---
 
