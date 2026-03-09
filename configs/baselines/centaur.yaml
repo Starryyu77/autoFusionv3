@@ -1,0 +1,76 @@
+# Centaur (Robust Multimodal Fusion)
+# 参考论文: Centaur - Robust Multimodal Fusion (IEEE Sensors 2024)
+
+experiment:
+  name: "centaur"
+  description: "Robust Multimodal Fusion with reliability estimation and denoising"
+  paper: "IEEE Sensors 2024"
+
+# Centaur特定配置
+model:
+  hidden_dim: 256
+  dropout: 0.2
+  # 去噪自编码器隐藏维度
+  denoise_hidden_dim: 128
+  # 可靠性估计阈值
+  reliability_threshold: 0.5
+  # 模态补全启用
+  use_modality_completion: true
+
+# 训练配置
+# Centaur使用更稳定的学习率
+training:
+  optimizer: "Adam"
+  learning_rate: 0.0008
+  weight_decay: 0.0001
+
+  scheduler: "reduce_on_plateau"
+  scheduler_patience: 10
+  scheduler_factor: 0.5
+
+  epochs: 100
+  batch_size: 64
+
+  early_stop:
+    enabled: true
+    patience: 20
+    min_delta: 0.001
+
+  gradient_clip:
+    enabled: true
+    max_norm: 1.0
+
+# 评估配置
+evaluation:
+  num_seeds: 5
+  seeds: [42, 123, 456, 789, 1024]
+
+  modality_dropout:
+    probabilities: [0.0, 0.25, 0.50]
+    modes: ["random", "burst", "progressive"]
+
+# 数据集配置
+datasets:
+  mosei:
+    path: "data/mosei_processed"
+    num_classes: 10
+    input_dims:
+      vision: 768
+      audio: 1024
+      text: 768
+
+  iemocap:
+    path: "data/iemocap_processed"
+    num_classes: 9
+    input_dims:
+      vision: 768
+      audio: 1024
+      text: 768
+
+  vqa:
+    path: "data/vqa_processed"
+    num_classes: 3129
+    input_dims:
+      vision: 768
+      text: 768
+    batch_size: 128

@@ -1,0 +1,104 @@
+# EvoPrompting (Evolutionary Prompting)
+# 参考论文: EvoPrompting - Large Language Models as Hyper-Heuristics for Neuroevolution (NeurIPS 2023)
+
+experiment:
+  name: "evoprompting"
+  description: "Evolutionary optimization in prompt space"
+  paper: "NeurIPS 2023"
+
+# EvoPrompting特定配置
+model:
+  hidden_dim: 256
+  dropout: 0.2
+
+# 进化搜索配置
+search:
+  enabled: true
+  population_size: 10
+  num_iterations: 20
+
+  # 进化操作
+  evolution:
+    # 变异率
+    mutation_rate: 0.3
+    # 交叉率
+    crossover_rate: 0.5
+    # 锦标赛大小
+    tournament_size: 3
+    # 精英保留比例
+    elitism_ratio: 0.1
+
+  # LLM生成参数
+  llm:
+    backend: "aliyun"
+    model: "kimi-k2.5"
+    temperature: 0.9
+    max_tokens: 2048
+
+  # 提示词初始化
+  initial_prompts:
+    - "Generate a neural network for multimodal fusion with attention"
+    - "Create a deep learning model with residual connections"
+    - "Design a multimodal architecture using transformers"
+    - "Build a fusion network with layer normalization"
+    - "Generate an efficient model with cross-modal attention"
+
+# 训练配置
+training:
+  optimizer: "Adam"
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+  scheduler: "reduce_on_plateau"
+  scheduler_patience: 10
+  scheduler_factor: 0.5
+
+  epochs: 100
+  batch_size: 64
+
+  early_stop:
+    enabled: true
+    patience: 20
+    min_delta: 0.001
+
+  gradient_clip:
+    enabled: true
+    max_norm: 1.0
+
+# 评估配置
+evaluation:
+  num_seeds: 3  # EvoPrompting搜索成本高，使用较少种子
+  seeds: [42, 123, 456]
+
+  # 评估最终种群
+  evaluate_population: true
+
+  modality_dropout:
+    probabilities: [0.0, 0.25, 0.50]
+    modes: ["random"]
+
+# 数据集配置
+datasets:
+  mosei:
+    path: "data/mosei_processed"
+    num_classes: 10
+    input_dims:
+      vision: 768
+      audio: 1024
+      text: 768
+
+  iemocap:
+    path: "data/iemocap_processed"
+    num_classes: 9
+    input_dims:
+      vision: 768
+      audio: 1024
+      text: 768
+
+  vqa:
+    path: "data/vqa_processed"
+    num_classes: 3129
+    input_dims:
+      vision: 768
+      text: 768
+    batch_size: 128

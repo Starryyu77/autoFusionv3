@@ -1,0 +1,76 @@
+# TFN (Tensor Fusion Network)
+# 参考论文: Tensor Fusion Network for Multimodal Sentiment Analysis (EMNLP 2017)
+
+experiment:
+  name: "tfn"
+  description: "Tensor Fusion Network using outer product"
+  paper: "EMNLP 2017"
+
+# TFN特定配置
+model:
+  hidden_dim: 256
+  dropout: 0.2
+  # 降维维度（避免外积维度爆炸）
+  reduce_dim: 64
+  # 是否使用低秩近似
+  use_low_rank: true
+  rank: 16
+
+# 训练配置
+# 论文使用Adagrad，但Adam效果更好
+training:
+  optimizer: "Adam"
+  learning_rate: 0.0005  # TFN需要较小学习率
+  weight_decay: 0.0001
+
+  scheduler: "reduce_on_plateau"
+  scheduler_patience: 10
+  scheduler_factor: 0.5
+
+  epochs: 100
+  batch_size: 32  # 外积计算消耗显存，使用较小batch
+
+  early_stop:
+    enabled: true
+    patience: 20
+    min_delta: 0.001
+
+  gradient_clip:
+    enabled: true
+    max_norm: 1.0
+
+# 评估配置
+evaluation:
+  num_seeds: 5
+  seeds: [42, 123, 456, 789, 1024]
+
+  modality_dropout:
+    probabilities: [0.0, 0.25, 0.50]
+    modes: ["random"]
+
+# 数据集配置
+datasets:
+  mosei:
+    path: "data/mosei_processed"
+    num_classes: 10
+    input_dims:
+      vision: 768
+      audio: 1024
+      text: 768
+
+  iemocap:
+    path: "data/iemocap_processed"
+    num_classes: 9
+    input_dims:
+      vision: 768
+      audio: 1024
+      text: 768
+
+  vqa:
+    path: "data/vqa_processed"
+    num_classes: 3129
+    input_dims:
+      vision: 768
+      text: 768
+    # VQA只有2个模态，可以使用较大batch
+    batch_size: 64

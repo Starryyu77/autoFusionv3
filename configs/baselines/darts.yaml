@@ -1,0 +1,88 @@
+# DARTS (Differentiable Architecture Search)
+# 参考论文: DARTS - Differentiable Architecture Search (ICLR 2019)
+
+experiment:
+  name: "darts"
+  description: "Differentiable Architecture Search for multimodal fusion"
+  paper: "ICLR 2019"
+
+# DARTS特定配置
+model:
+  hidden_dim: 256
+  dropout: 0.2
+  # 候选操作数量
+  num_ops: 5
+  # 架构参数初始化
+  arch_init: "normal"
+  # 温度系数（softmax sharper）
+  temperature: 1.0
+
+# 搜索阶段配置
+search:
+  enabled: true
+  epochs: 50
+  # 架构参数学习率
+  arch_lr: 0.01
+  # 模型参数学习率
+  model_lr: 0.001
+  # 交替训练频率
+  update_freq: 1
+
+# 训练配置
+training:
+  optimizer: "Adam"
+  learning_rate: 0.001
+  weight_decay: 0.0003  # DARTS使用较大weight decay
+
+  scheduler: "cosine"
+  warmup_epochs: 5
+
+  epochs: 100
+  batch_size: 64
+
+  early_stop:
+    enabled: true
+    patience: 20
+    min_delta: 0.001
+
+  gradient_clip:
+    enabled: true
+    max_norm: 1.0
+
+# 评估配置
+evaluation:
+  num_seeds: 5
+  seeds: [42, 123, 456, 789, 1024]
+
+  # DARTS需要评估导出架构的性能
+  evaluate_derived_arch: true
+
+  modality_dropout:
+    probabilities: [0.0, 0.25, 0.50]
+    modes: ["random"]
+
+# 数据集配置
+datasets:
+  mosei:
+    path: "data/mosei_processed"
+    num_classes: 10
+    input_dims:
+      vision: 768
+      audio: 1024
+      text: 768
+
+  iemocap:
+    path: "data/iemocap_processed"
+    num_classes: 9
+    input_dims:
+      vision: 768
+      audio: 1024
+      text: 768
+
+  vqa:
+    path: "data/vqa_processed"
+    num_classes: 3129
+    input_dims:
+      vision: 768
+      text: 768
+    batch_size: 128
