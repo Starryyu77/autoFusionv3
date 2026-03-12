@@ -1,0 +1,21 @@
+{
+  "task": "5class",
+  "test_result": {
+    "accuracy": 49.98923110058152
+  },
+  "config": {
+    "data_path": "/usr1/home/s125mdg43_10/AutoFusion_v3/data/mosei/mosei_senti_data.pkl",
+    "task": "5class",
+    "embed_dim": 64,
+    "hidden_dim": 128,
+    "fusion_dim": 128,
+    "epochs": 100,
+    "batch_size": 32,
+    "lr": 0.0005,
+    "weight_decay": 0.01,
+    "patience": 20,
+    "gpu": 0,
+    "output_dir": "experiments/eas_mosi_paper/results"
+  },
+  "accuracy": 49.98923110058152
+}

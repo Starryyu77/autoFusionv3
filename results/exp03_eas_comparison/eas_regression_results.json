@@ -1,0 +1,21 @@
+{
+  "task": "regression",
+  "test_result": {
+    "mae": 0.6874318718910217
+  },
+  "config": {
+    "data_path": "/usr1/home/s125mdg43_10/AutoFusion_v3/data/mosei/mosei_senti_data.pkl",
+    "task": "regression",
+    "embed_dim": 64,
+    "hidden_dim": 128,
+    "fusion_dim": 128,
+    "epochs": 100,
+    "batch_size": 32,
+    "lr": 0.0005,
+    "weight_decay": 0.01,
+    "patience": 20,
+    "gpu": 0,
+    "output_dir": "experiments/eas_mosi_paper/results"
+  },
+  "mae": 0.6874318718910217
+}

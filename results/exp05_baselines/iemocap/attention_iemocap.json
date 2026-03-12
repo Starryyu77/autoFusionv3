@@ -1,0 +1,62 @@
+{
+  "method": "attention",
+  "dataset": "iemocap",
+  "is_regression": false,
+  "num_seeds": 5,
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1024
+  ],
+  "dropout_0_mean": 0.1155,
+  "dropout_0_std": 0.004582575694955839,
+  "dropout_25_mean": 0.121,
+  "dropout_25_std": 0.01090871211463572,
+  "dropout_50_mean": 0.121,
+  "dropout_50_std": 0.008000000000000002,
+  "training_time_mean": 45.836176824569705,
+  "training_time_std": 25.76242284434188,
+  "mrob_25_mean": 1.048984664644422,
+  "mrob_25_std": 0.10095759506706878,
+  "mrob_50_mean": 1.0493427704752276,
+  "mrob_50_std": 0.08098057381638049,
+  "raw_results": [
+    {
+      "seed": 42,
+      "training_time": 63.365827798843384,
+      "dropout_0": 0.115,
+      "dropout_25": 0.1025,
+      "dropout_50": 0.1325
+    },
+    {
+      "seed": 123,
+      "training_time": 82.31858777999878,
+      "dropout_0": 0.12,
+      "dropout_25": 0.1225,
+      "dropout_50": 0.1275
+    },
+    {
+      "seed": 456,
+      "training_time": 47.82996940612793,
+      "dropout_0": 0.115,
+      "dropout_25": 0.1175,
+      "dropout_50": 0.1125
+    },
+    {
+      "seed": 789,
+      "training_time": 25.18015718460083,
+      "dropout_0": 0.12,
+      "dropout_25": 0.135,
+      "dropout_50": 0.1125
+    },
+    {
+      "seed": 1024,
+      "training_time": 10.486341953277588,
+      "dropout_0": 0.1075,
+      "dropout_25": 0.1275,
+      "dropout_50": 0.12
+    }
+  ]
+}
