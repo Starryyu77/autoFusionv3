@@ -1,0 +1,76 @@
+{
+  "experiment": "CIFAR-10 Baseline Comparison",
+  "date": "2026-03-12",
+  "environment": {
+    "server": "NTU GPU43",
+    "gpu": "4x NVIDIA RTX A5000 (24GB)"
+  },
+  "results": {
+    "darts": {
+      "method": "DARTS (ICLR 2019)",
+      "search": {
+        "epochs": 50,
+        "batch_size": 32,
+        "approximation": "1st order",
+        "validation_accuracy": 100.0,
+        "duration_hours": 10,
+        "model_size_mb": 3.35
+      },
+      "evaluation": {
+        "epochs": 600,
+        "final_train_accuracy": 99.22,
+        "final_validation_accuracy": 97.28,
+        "best_validation_accuracy": 97.38,
+        "test_error": null,
+        "duration_hours": 8.5,
+        "model_path": "baselines/darts/cnn/eval-exp_darts_eval_gpu1-20260311-102202/weights.pt"
+      },
+      "genotype": {
+        "normal": [
+          ["sep_conv_3x3", 0], ["sep_conv_3x3", 1],
+          ["sep_conv_3x3", 0], ["sep_conv_3x3", 1],
+          ["skip_connect", 0], ["sep_conv_5x5", 1],
+          ["skip_connect", 0], ["sep_conv_5x5", 1]
+        ],
+        "reduce": [
+          ["max_pool_3x3", 0], ["max_pool_3x3", 1],
+          ["max_pool_3x3", 0], ["skip_connect", 2],
+          ["skip_connect", 2], ["skip_connect", 3],
+          ["skip_connect", 2], ["skip_connect", 3]
+        ]
+      }
+    },
+    "eas": {
+      "method": "EAS-LLM",
+      "search": {
+        "iterations": 50,
+        "epochs_per_iteration": 50,
+        "llm_model": "kimi-k2.5",
+        "api_provider": "aliyun",
+        "success_rate": 100.0,
+        "best_search_accuracy": 92.80,
+        "duration_hours": 4.67,
+        "api_calls": 50
+      },
+      "evaluation": {
+        "epochs": 600,
+        "best_validation_accuracy": 94.58,
+        "best_epoch": 505,
+        "test_error": 5.42,
+        "total_params": 5453194,
+        "duration_hours": 1.15,
+        "improvement": 1.78,
+        "model_path": "results/eas/best_model_600epochs.pth"
+      }
+    }
+  },
+  "comparison": {
+    "best_method": "DARTS",
+    "accuracy_gap": 2.8,
+    "total_duration_hours": {
+      "darts": 18.5,
+      "eas": 5.82
+    }
+  },
+  "conclusion": "DARTS achieves 2.8% higher accuracy on CIFAR-10, but EAS is 3x faster in total search+training time"
+}
