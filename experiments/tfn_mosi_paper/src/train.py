@@ -47,16 +47,17 @@ def evaluate(model, loader, task, device):
                 # 应用 sigmoid 得到 [0,1]，然后映射到 [-3, 3]
                 probs = torch.sigmoid(outputs).cpu().numpy()
                 preds = probs * 6 - 3
+                labels_np = labels.cpu().numpy()
             elif task == '5class':
                 preds = torch.argmax(outputs, dim=1).cpu().numpy()
-                labels = labels.cpu().numpy()
+                labels_np = labels.cpu().numpy()
             else:  # regression
                 # 输出 [-1,1]，映射到 [-3, 3]
                 preds = outputs.cpu().numpy() * 3
-                labels = labels.cpu().numpy() * 3
+                labels_np = labels.cpu().numpy() * 3
 
             all_preds.extend(preds)
-            all_labels.extend(labels.cpu().numpy())
+            all_labels.extend(labels_np)
 
     all_preds = np.array(all_preds)
     all_labels = np.array(all_labels)
